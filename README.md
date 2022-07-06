@@ -6,4 +6,5 @@ Guessing the daily movie by frame (Tamil)
 
 
 Frontend = react
+
 API & backend = Firebase!?
