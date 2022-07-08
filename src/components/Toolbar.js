@@ -1,13 +1,18 @@
 import { InfoCircleOutlined } from '@ant-design/icons'
-import { Space } from 'antd'
 import React from 'react'
 import logo from "../assets/logo.png"
+import styles from "./style/Toolbar.module.css"
 
 export default function Toolbar() {
     return (
-        <Space >
+        <div className={styles.parent}>
+
             <img src={logo} />
-            <InfoCircleOutlined />
-        </Space>
+
+            <div className={styles.tools}>
+                <InfoCircleOutlined className={styles.tool__info}/>
+            </div>
+        </div>
+
     )
 }
