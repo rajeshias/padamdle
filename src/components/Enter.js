@@ -1,20 +1,116 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import { Button, Grid } from '@mui/material';
+import styles from "./style/Enter.module.css"
+import styled from "styled-components";
+import ans from '../assets/db/Answers';
+import ResultModal from './ResultModal';
+
+const WhiteBorderTextField = styled(TextField)`
+& label.Mui-focused {
+  color: white;
+}
+& .MuiOutlinedInput-root {
+  &.Mui-focused fieldset {
+    border-color: white;
+  }
+}
+`;
+const textFieldColor = "white"
+const textFieldSX = {
+    input: {
+        "-webkit-text-fill-color": `${textFieldColor} !important`,
+        color: `${textFieldColor} !important`,
+    },
+};
+
 
 export default function Enter() {
+
+    const [attempt, setAttempt] = useState();
+    const [tries, setTries] = useState([]);
+    const [result, setResult] = useState(false);
+    const [gameOver, setGameOver] = useState(false);
+
+    useEffect(() => {
+        if (tries.length > 2) {
+            setResult(true);
+        }
+    }, [tries])
+
+    const checkAttempt = () => {
+        if (attempt?.label === ans) {
+            console.log(tries);
+            setTries([
+                ...tries,
+                `✅ ${attempt?.label}`
+            ]
+            )
+            setResult(true)
+            setGameOver(true)
+        } else {
+            setTries([
+                ...tries,
+                `❌ ${attempt?.label}`
+            ]
+            )
+        }
+    };
+
+    const handleClose = () => setResult(false);
+
     return (
-        <Autocomplete
-            style={{ background: "white" }}
-            disablePortal
-            id="combo-box-demo"
-            options={top100Films}
-            renderInput={(params) => <TextField {...params} />}
-        />
+        <Grid container>
+            <Grid item xs={10}>
+                <ResultModal open={result} handleClose={handleClose} />
+                <Autocomplete
+                    style={{ background: "white" }}
+                    disablePortal
+                    id="combo-box-demo"
+                    options={top100Films}
+                    renderInput={(params) => <WhiteBorderTextField {...params} />}
+                    size="small"
+                    onChange={(event, newValue) => {
+                        setAttempt(newValue);
+                    }}
+                    disabled={tries.length > 2 || gameOver}
+                />
+            </Grid>
+            <Grid item xs={2}>
+                <Button
+                    onClick={() => checkAttempt()}
+                    className={styles.submit}
+                    color="secondary"
+                    variant="contained"
+                    fullWidth
+                    disabled={tries.length > 2 || gameOver}
+                >Submit</Button>
+            </Grid>
+            <br />
+            <br />
+            <br />
+
+            {tries.map((eachTry, index) => {
+                return <>
+                    <Grid key={index} item xs={12}>
+                        <TextField sx={textFieldSX} value={eachTry} disabled size="small" fullWidth />
+                    </Grid>
+                    <br />
+                    <br />
+                </>
+            })}
+            <Grid item xs={12}>
+                {
+                    !gameOver && <span>{`${3 - tries.length} guesses left`}</span>
+                }
+            </Grid>
+        </Grid>
     )
 }
 
 const top100Films = [
+    { label: 'Jai Bhim', year: 2021 },
     { label: 'The Shawshank Redemption', year: 1994 },
     { label: 'The Godfather', year: 1972 },
     { label: 'The Godfather: Part II', year: 1974 },

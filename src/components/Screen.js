@@ -3,6 +3,7 @@ import Tab from '@mui/material/Tab';
 import React, { useState } from 'react'
 import styles from './style/Screen.module.css'
 import Enter from './Enter';
+import today from '../assets/db/images/july';
 
 export default function Screen() {
     const [value, setValue] = useState(0);
@@ -10,15 +11,15 @@ export default function Screen() {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
+    console.log(today)
     return (
         <div className={styles.guess__card}>
-            <div className={styles.guess__pic}><img src="https://f004.backblazeb2.com/file/padamdle/Rasikkum+Seemanae.png" alt="se" /></div>
+            <div className={styles.guess__pic}><img src={today[0]} alt="se" /></div>
             <Tabs className={styles.guess__tabs} value={value} onChange={handleChange} centered>
                 <Tab label="1" />
             </Tabs>
             <br />
-            <Enter centered/>
+            <Enter centered />
         </div>
     )
 }
