@@ -1,0 +1,22 @@
+.guess__card {
+    padding-top: 40px;
+    width:400px;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.guess__pic {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.guess__pic img {
+    width: 100%;
+    height: auto;
+}
+
+.guess__tabs {
+    display: inline-block;
+    vertical-align: middle;
+}
