@@ -1,6 +1,6 @@
 .guess__card {
     padding-top: 40px;
-    width:400px;
+    width:500px;
     margin: auto;
     text-align: center;
     vertical-align: middle;
@@ -12,8 +12,8 @@
 }
 
 .guess__pic img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 220px;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;

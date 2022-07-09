@@ -1,5 +1,7 @@
 import { Box, Modal, Typography } from '@mui/material'
 import React from 'react'
+import sweat from '../assets/db/Sweat';
+import ShareButton from './ShareButton';
 
 const style = {
     position: 'absolute',
@@ -11,25 +13,28 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    textAlign: "center"
 };
 
-
-export default function ResultModal({ open, handleClose }) {
+export default function ResultModal({ open, handleClose, won, emoji }) {
     return (
         <Modal
             open={open}
             onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
         >
             <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                    Text in a modal
+                {won && <img src="https://img.icons8.com/bubbles/200/000000/trophy.png" />}
+                <Typography id="modal-modal-title" variant="h8" component="h2">
+                    {`You ${won ? "got" : "missed"} it!`}
                 </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+
+                <br />
+                <Typography>
+                    Today’s padam is <strong>{sweat}</strong>. Thanks for playing - come back tomorrow for another Padamdle!
                 </Typography>
+                <br />
+                <ShareButton won={won} emoji={emoji} />
             </Box>
-        </Modal>
+        </Modal >
     )
 }
