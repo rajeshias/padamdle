@@ -11,15 +11,15 @@ export default function ShareButton({ emoji, won }) {
     const [result, setResult] = useState("")
 
     useEffect(() => {
-        if (localStorage.getItem("padamdle-result") !== null) {
-            setResult(localStorage.getItem("padamdle-result"))
+        if (localStorage.getItem(`padamdle-result-${no}`) !== null) {
+            setResult(localStorage.getItem(`padamdle-result-${no}`))
         } else {
             let blackSquares = "";
             for (let i = 0; i < (3 - (emoji.length / 2)); i++) {
                 blackSquares += "⬛"
             };
             setResult(`padamdle #1 ${emoji + blackSquares}`)
-            localStorage.setItem("padamdle-result", `padamdle ${no} ${emoji + blackSquares}`)
+            localStorage.setItem(`padamdle-result-${no}`, `padamdle ${no} ${emoji + blackSquares}`)
         }
     }, [])
 
