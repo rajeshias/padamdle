@@ -1,9 +1,13 @@
 .parent {
-    width: 100%;
+    width: 500px;
     height: 60px;
     position: relative;
     /* white-space: nowrap; */
     /* overflow: hidden; */
+    /* background-color: red; */
+    /* vertical-align: middle;
+    text-align: center; */
+    margin: auto;
 }
 
 .parent img {
@@ -26,5 +30,13 @@
 
 .tool__info {
     font-size:30px;
+    color: white;
+}
+
+.no{
+    position: absolute;
+    font-size: xx-large;
+    padding-bottom: 20px;
+    padding-top: 2px;
     color: white;
 }

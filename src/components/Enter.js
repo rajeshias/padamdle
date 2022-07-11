@@ -10,6 +10,11 @@ import { createFilterOptions } from '@mui/material/Autocomplete';
 import Countdown from 'react-countdown';
 import ShareButton from './ShareButton';
 
+var today = new Date();
+
+var localKey = "padamdle-" + today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+
 const filterOptions = createFilterOptions({
     matchFrom: 'any',
     limit: 7,
@@ -45,8 +50,8 @@ export default function Enter({ tries, setTries }) {
     const [emoji, setEmoji] = useState("");
 
     useEffect(() => {
-        if (localStorage.getItem("tried") !== null) {
-            setTries(JSON.parse(localStorage.getItem("tried")))
+        if (localStorage.getItem(localKey) !== null) {
+            setTries(JSON.parse(localStorage.getItem(localKey)))
         }
     }, [])
 
@@ -79,7 +84,7 @@ export default function Enter({ tries, setTries }) {
                 `✅ ${attempt?.label}`
             ]
             )
-            localStorage.setItem("tried", JSON.stringify([
+            localStorage.setItem(localKey, JSON.stringify([
                 ...tries,
                 `✅ ${attempt?.label}`
             ]))
@@ -92,7 +97,7 @@ export default function Enter({ tries, setTries }) {
                 ...tries,
                 `❌ ${attempt?.label}`
             ])
-            localStorage.setItem("tried", JSON.stringify([
+            localStorage.setItem(localKey, JSON.stringify([
                 ...tries,
                 `❌ ${attempt?.label}`
             ]))
@@ -166,8 +171,8 @@ export default function Enter({ tries, setTries }) {
                     </Grid>
                     : <>
                         <Grid item xs={8}>
-                            <Typography id="modal-modal-title" variant="h8" component="h2">
-                                {`${won ? "🏆You got" : "You missed"} it!`}
+                            <Typography style={{ paddingTop: "5px" }} variant="h9" component="h3">
+                                {`${sweat} - ${won ? "🏆You got" : "You missed"} it!`}
                             </Typography >
                         </Grid>
                         <Grid item xs={4}>

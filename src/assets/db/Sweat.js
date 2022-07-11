@@ -1,9 +1,9 @@
 
 const maximum = {
     "9": "Eetti (2015)",
-    "10": "",
-    "11": "",
-    "12": "",
+    "10": "Thiruda Thirudi",
+    "11": "Pandavar Bhoomi",
+    "12": "Keladi Kanmani",
     "13": "",
     "14": "",
     "15": "",
