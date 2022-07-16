@@ -24,7 +24,9 @@ export default function Screen() {
     };
     return (
         <div className={styles.guess__card}>
-            <div className={styles.guess__pic}><img src={today[value]} /></div>
+            {value === 0 && <div className={styles.guess__pic}><img src={today[0]} /></div>}
+            {value === 1 && <div className={styles.guess__pic}><img src={today[1]} /></div>}
+            {value === 2 && <div className={styles.guess__pic}><img src={today[2]} /></div>}
             <Tabs className={styles.guess__tabs} value={value} onChange={handleChange} centered>
                 <Tab label="1" />
                 {tries.length > 0 && <Tab label="2" />}
